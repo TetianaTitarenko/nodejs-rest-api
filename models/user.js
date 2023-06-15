@@ -1,5 +1,5 @@
 const {Schema, model} = require("mongoose");
-const {registerSchema, loginSchema} = require("../schemas/users")
+const {registerSchema, loginSchema, emailSchema} = require("../schemas/users")
 
 const {handleMongooseError} = require("../helpers");
 
@@ -31,10 +31,10 @@ const userSchema = new Schema ({
       type: String,
       default: ""
     },
-    avatar: {
-      type: String,
-      required: true,
-    },
+    // avatar: {
+    //   type: String,
+    //   required: true,
+    // },
     verify: {
       type: Boolean,
       default: false,
@@ -50,6 +50,7 @@ userSchema.post("save", handleMongooseError);
 const schemas = {
   registerSchema,
     loginSchema,
+    emailSchema,
 }
 
 const User = model("user", userSchema)
