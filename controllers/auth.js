@@ -9,7 +9,7 @@ const {nanoid} = require('nanoid')
 const {User} = require("../models/user");
 const {HttpError, ctrlWrapper, sendEmail} = require("../helpers");
 const {SECRET_KEY, PROJECT_URL} = require("../config");
-const { throws } = require("assert");
+// const { throws } = require("assert");
 const avatarsDir = path.join(__dirname, "../", "public", "avatars");
 
 const register = async(req, res) => {
@@ -76,7 +76,7 @@ const resendVerifyEmail = async(req, res) => {
     const verifyEmail = {
         to: email,
         sabject: "Verify email",
-        html: `<a target="_blank" href="${PROJECT_URL}/api/auth/verify/${verificationToken}">Click to verify email</a>`
+        html: `<a target="_blank" href="${PROJECT_URL}/api/auth/verify/${user.verificationToken}">Click to verify email</a>`
     }
     await sendEmail(verifyEmail)
 
